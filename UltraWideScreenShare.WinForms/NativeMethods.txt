@@ -1,0 +1,16 @@
+﻿MagInitialize
+SetLayeredWindowAttributes
+SetWindowsHookEx
+CreateWindowEx
+SetWindowPos
+MagSetWindowSource
+InvalidateRect
+ShowWindow
+GetWindowRect
+GetClientRect
+SetWindowLong
+GetWindowLong
+SendMessage
+ReleaseCapture
+GetWindowLongPtr
+SetWindowLongPtr
