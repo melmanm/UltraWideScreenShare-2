@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>UltraWideScreenShare.WinForms.Program</StartupObject>
+    <AssemblyName>UltraWideScreenShare2</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
