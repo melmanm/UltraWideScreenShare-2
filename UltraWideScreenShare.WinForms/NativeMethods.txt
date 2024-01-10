@@ -12,5 +12,3 @@ SetWindowLong
 GetWindowLong
 SendMessage
 ReleaseCapture
-GetWindowLongPtr
-SetWindowLongPtr
