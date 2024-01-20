@@ -13,7 +13,7 @@ namespace UltraWideScreenShare.WinForms
         {
             var hwnd = new HWND(window.Handle);
             var style = PInvoke.GetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
-            PInvoke.SetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE, style |= WS_SIZEBOX | WS_MINIMIZEBOX);
+            PInvoke.SetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE, style | WS_SIZEBOX | WS_MINIMIZEBOX);
         }
 
 

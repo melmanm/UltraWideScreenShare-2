@@ -19,8 +19,8 @@ namespace UltraWideScreenShare.WinForms
             InitializeComponent();
             controlPanel.BringToFront();
             controlPanel.BackColor = _frameColor;
-            this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.BackColor = System.Drawing.Color.Magenta;
+            this.TransparencyKey = Color.Magenta;
+            this.BackColor = Color.Magenta;
             FormBorderStyle = FormBorderStyle.None;
             DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
@@ -31,7 +31,7 @@ namespace UltraWideScreenShare.WinForms
         {
             base.OnCreateControl();
 
-            this.InitializeMainWindowStyle();
+            this/.InitializeMainWindowStyle();
         }
 
         protected override void OnMove(EventArgs e)
