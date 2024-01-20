@@ -29,6 +29,7 @@ namespace UltraWideScreenShare.WinForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.magnifierPanel = new System.Windows.Forms.Panel();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.shareButton = new System.Windows.Forms.Button();
@@ -184,6 +185,7 @@ namespace UltraWideScreenShare.WinForms
             this.ControlBox = false;
             this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.magnifierPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Padding = new System.Windows.Forms.Padding(8);
             this.Text = "Ultra Wide Screen Share 2.0";
