@@ -9,6 +9,7 @@
     <StartupObject>UltraWideScreenShare.WinForms.Program</StartupObject>
     <AssemblyName>UltraWideScreenShare2</AssemblyName>
     <ApplicationIcon>Resources\ultrawidescreenshare2.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
