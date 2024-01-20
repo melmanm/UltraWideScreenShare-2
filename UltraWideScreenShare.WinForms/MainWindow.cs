@@ -1,5 +1,8 @@
+using System.CodeDom;
 using System.Diagnostics;
-
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 using Timer = System.Windows.Forms.Timer;
 
 namespace UltraWideScreenShare.WinForms
@@ -23,16 +26,14 @@ namespace UltraWideScreenShare.WinForms
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
         }
 
-        const int WS_SIZEBOX = 0x40000;
-        protected override CreateParams CreateParams
+      
+        protected override void OnCreateControl()
         {
-            get
-            {
-                var @params = base.CreateParams;
-                @params.Style |= WS_SIZEBOX;
-                return @params;
-            }
+            base.OnCreateControl();
+
+            this.InitializeMainWindowStyle();
         }
+
         protected override void OnMove(EventArgs e)
         {
             MaximizedBounds = new Rectangle(Point.Empty, Screen.GetWorkingArea(Location).Size);
@@ -48,12 +49,12 @@ namespace UltraWideScreenShare.WinForms
                 if (magnifierPanel.Bounds.Contains(PointToClient(Cursor.Position)) && !controlPanel.Bounds.Contains(PointToClient(Cursor.Position)))
                 {
                     if (!_isTransparent)
-                    { Handle.SetTransparency(_isTransparent = true); Trace.WriteLine("enter"); }
+                    { this.SetTransparency(_isTransparent = true); Trace.WriteLine("enter"); }
                 }
                 else
                 {
                     if (_isTransparent)
-                    { Handle.SetTransparency(_isTransparent = false); Trace.WriteLine("leave"); }
+                    { this.SetTransparency(_isTransparent = false); Trace.WriteLine("leave"); }
                 }
 
             };

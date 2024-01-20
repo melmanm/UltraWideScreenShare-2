@@ -1,4 +1,5 @@
-﻿using Windows.Win32;
+﻿using System.Reflection.Metadata;
+using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
@@ -6,11 +7,21 @@ namespace UltraWideScreenShare.WinForms
 {
     public static class WindowExtension
     {
+        const int WS_SIZEBOX = 0x40000;
+        const int WS_MINIMIZEBOX = 0x20000;
+        public static void InitializeMainWindowStyle(this Form window)
+        {
+            var hwnd = new HWND(window.Handle);
+            var style = PInvoke.GetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+            PInvoke.SetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE, style |= WS_SIZEBOX | WS_MINIMIZEBOX);
+        }
+
+
         const int WS_EX_LAYERED = 0x80000;
         const int WS_EX_TRANSPARENT = 0x20;
-        public static void SetTransparency(this IntPtr windowHandle, bool transparent)
+        public static void SetTransparency(this Form window, bool transparent)
         {
-            var hwnd = new HWND(windowHandle);
+            var hwnd = new HWND(window.Handle);
             if (transparent)
             {
                 var extendedStyle = PInvoke.GetWindowLong(hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
