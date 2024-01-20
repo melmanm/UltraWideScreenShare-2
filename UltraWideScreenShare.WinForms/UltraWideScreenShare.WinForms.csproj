@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-	<TargetFramework>net6.0-windows/win-x86</TargetFramework>
+	<RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
 	<Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
