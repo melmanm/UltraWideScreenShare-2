@@ -9,7 +9,7 @@
   <Identity
     Name="03692554-3163-4f67-9571-8f6ac1e34a81"
     Publisher="CN=Michal"
-    Version="1.0.0.0" />
+    Version="1.0.2.0" />
 
   <Properties>
     <DisplayName>UltraWideScreenShare2</DisplayName>
