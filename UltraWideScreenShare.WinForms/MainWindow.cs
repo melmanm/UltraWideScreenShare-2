@@ -31,7 +31,7 @@ namespace UltraWideScreenShare.WinForms
         {
             base.OnCreateControl();
 
-            this/.InitializeMainWindowStyle();
+            this.InitializeMainWindowStyle();
         }
 
         protected override void OnMove(EventArgs e)
