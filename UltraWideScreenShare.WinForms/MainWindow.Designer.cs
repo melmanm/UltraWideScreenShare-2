@@ -194,7 +194,12 @@ namespace UltraWideScreenShare.WinForms
             this.ResizeBegin += new System.EventHandler(this.MainWindow_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.MainWindow_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainWindow_Paint);
+            this.TransparencyKey = System.Drawing.Color.Magenta;
+            this.BackColor = System.Drawing.Color.Magenta;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.DoubleBuffered = true;
             this.controlPanel.ResumeLayout(false);
+            this.MinimumSize = new Size(500, 200);
             this.ResumeLayout(false);
 
         }

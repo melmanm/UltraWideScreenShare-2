@@ -9,20 +9,17 @@ namespace UltraWideScreenShare.WinForms
 {
     public partial class MainWindow : Form
     {
-        private readonly Timer _dispatcherTimer = new Timer() { Interval = 5 };
+        private readonly Timer _dispatcherTimer = new Timer() { Interval = 2 }; //30fps
         private Magnifier _magnifier;
         private bool _isTransparent = false;
         private Color _frameColor = Color.FromArgb(255, 53, 89, 224); //#3559E0
         const int _borderWidth = 8;
+        private bool _showMagnifierScheduled = true;
         public MainWindow()
         {
             InitializeComponent();
             controlPanel.BringToFront();
             controlPanel.BackColor = _frameColor;
-            this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.BackColor = System.Drawing.Color.Magenta;
-            FormBorderStyle = FormBorderStyle.None;
-            DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
         }
 
@@ -56,13 +53,17 @@ namespace UltraWideScreenShare.WinForms
                     if (_isTransparent)
                     { this.SetTransparency(_isTransparent = false); Trace.WriteLine("leave"); }
                 }
-
+                if (_showMagnifierScheduled)
+                {
+                    _magnifier.ShowMagnifier();
+                    _showMagnifierScheduled = false;
+                }
             };
         }
 
         private void MainWindow_ResizeBegin(object sender, EventArgs e) => _magnifier.HideMagnifier();
 
-        private void MainWindow_ResizeEnd(object sender, EventArgs e) => _magnifier.ShowMagnifier();
+        private void MainWindow_ResizeEnd(object sender, EventArgs e) => _showMagnifierScheduled = true;
 
 
         private void TittleBar_MouseDown(object sender, MouseEventArgs e)
