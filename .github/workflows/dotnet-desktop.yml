@@ -57,15 +57,12 @@ jobs:
         name: UltraWideScreenShare2
         path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
 
-    - name: Install zip
-      uses: montudor/action-zip@v1
-
-    - name: Zip output
-      run: zip -qq -r release.zip *
-      working-directory: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
+      - name: Perform a Pester test from the command-line
+        shell: pwsh
+        - run: Compress-Archive -Path ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\* -Destination release.zip
 
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\release.zip
+        files: release.zip
