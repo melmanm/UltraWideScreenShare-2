@@ -20,6 +20,7 @@ jobs:
     env:
       Solution_Name: UltraWideScreenShare2.sln 
       Project_Path: UltraWideScreenShare.Winforms\UltraWideScreenShare.Winforms.csproj     
+      Project_Dir: UltraWideScreenShare.Winforms 
 
     steps:
     - name: Checkout
@@ -54,4 +55,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: UltraWideScreenShare2
-        path: ${{ env.Project_Path }}\bin\${{ matrix.configuration }}\
+        path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
