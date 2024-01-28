@@ -49,14 +49,16 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Upload files
-    #- name: Upload build artifacts
-    #  uses: actions/upload-artifact@v3
-    #  with:
-    #    name: UltraWideScreenShare2
-    #    path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
-
-    uses: actions/create-release@v1
+     Upload files
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: UltraWideScreenShare2
+        path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
+        
+    - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
        with:
