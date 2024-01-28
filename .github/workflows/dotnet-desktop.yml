@@ -54,4 +54,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: UltraWideScreenShare2
-        path: ${{ env.Project_Directory }}\bin\
+        path: ${{ env.Project_Path }}\bin\${{ matrix.configuration }}\
