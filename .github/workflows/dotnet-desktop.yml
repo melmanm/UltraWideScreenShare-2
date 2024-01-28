@@ -19,7 +19,7 @@ jobs:
 
     env:
       Solution_Name: UltraWideScreenShare2.sln 
-      Project_Path: UltraWideScreenShare.Package\UltraWideScreenShare.Winforms.csproj     
+      Project_Path: UltraWideScreenShare.Winforms\UltraWideScreenShare.Winforms.csproj     
 
     steps:
     - name: Checkout
@@ -44,7 +44,7 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     # Build app
-    - name: Create the app package
+    - name: Build the application
       run: msbuild $env:Project_Path /p:Configuration=$env:Configuration 
       env:
         Configuration: ${{ matrix.configuration }}
