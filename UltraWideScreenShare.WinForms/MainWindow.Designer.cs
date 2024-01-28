@@ -30,7 +30,6 @@ namespace UltraWideScreenShare.WinForms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.magnifierPanel = new System.Windows.Forms.Panel();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.shareButton = new System.Windows.Forms.Button();
             this.tittleButton = new System.Windows.Forms.Button();
@@ -40,16 +39,6 @@ namespace UltraWideScreenShare.WinForms
             this.closeButton = new System.Windows.Forms.Button();
             this.controlPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // magnifierPanel
-            // 
-            this.magnifierPanel.BackColor = System.Drawing.Color.Transparent;
-            this.magnifierPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.magnifierPanel.Location = new System.Drawing.Point(8, 8);
-            this.magnifierPanel.Name = "magnifierPanel";
-            this.magnifierPanel.Padding = new System.Windows.Forms.Padding(8);
-            this.magnifierPanel.Size = new System.Drawing.Size(784, 434);
-            this.magnifierPanel.TabIndex = 0;
             // 
             // controlPanel
             // 
@@ -184,15 +173,16 @@ namespace UltraWideScreenShare.WinForms
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.controlPanel);
-            this.Controls.Add(this.magnifierPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Padding = new System.Windows.Forms.Padding(8);
-            this.Text = "Ultra Wide Screen Share 2.0";
+            this.Text = "Ultra Wide Screen Share 2.0 Main";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResizeBegin += new System.EventHandler(this.MainWindow_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.MainWindow_ResizeEnd);
+            this.LocationChanged += new System.EventHandler(this.MainWindow_LocationChanged);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainWindow_Paint);
             this.controlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -200,8 +190,6 @@ namespace UltraWideScreenShare.WinForms
         }
 
         #endregion
-
-        private Panel magnifierPanel;
         private Panel controlPanel;
         private Button closeButton;
         private Button maximizeButton;

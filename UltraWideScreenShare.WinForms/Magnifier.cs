@@ -10,7 +10,7 @@ namespace UltraWideScreenShare.WinForms
     {
         private HWND _hostWindowHandle;
         private HWND _magnifierWindowHandle;
-        private int _borderWidth = 4;
+        public bool IsVisible { get; private set; } = false;
         public Magnifier(IntPtr hostWindowHandle)
         {
             _hostWindowHandle = new HWND(hostWindowHandle);
@@ -20,11 +20,11 @@ namespace UltraWideScreenShare.WinForms
         {
             PInvoke.MagInitialize();
 
-            PInvoke.SetLayeredWindowAttributes(hostWindowHandle, new COLORREF(0), 255, LAYERED_WINDOW_ATTRIBUTES_FLAGS.LWA_ALPHA);
+            //PInvoke.SetLayeredWindowAttributes(hostWindowHandle, new COLORREF(0), 255, LAYERED_WINDOW_ATTRIBUTES_FLAGS.LWA_ALPHA);
             
             PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_MSGFILTER, FilterMessage, new HINSTANCE(hostWindowHandle.Value), 0);
 
-            return PInvoke.CreateWindowEx(
+            var result = PInvoke.CreateWindowEx(
                 0, 
                 "Magnifier", "MagnifierWindow",
                 WINDOW_STYLE.WS_CHILD | WINDOW_STYLE.WS_VISIBLE,
@@ -32,6 +32,9 @@ namespace UltraWideScreenShare.WinForms
                 0, 0,
                 hostWindowHandle, null, null, null);
 
+            IsVisible = true;
+
+            return result;
         }
 
         private LRESULT FilterMessage(int code, WPARAM wParam, LPARAM lParam)
@@ -48,16 +51,18 @@ namespace UltraWideScreenShare.WinForms
             PInvoke.InvalidateRect(_magnifierWindowHandle, (RECT?)null, new BOOL(1));
         }
 
-        public void ShowMagnifier()
+        public void Show()
         {
             PInvoke.ShowWindow(_magnifierWindowHandle, SHOW_WINDOW_CMD.SW_RESTORE);
             PInvoke.InvalidateRect(_magnifierWindowHandle, (RECT?)null, new BOOL(1));
+            IsVisible = true;
         }
 
-        public void HideMagnifier()
+        public void Hide()
         {
             PInvoke.ShowWindow(_magnifierWindowHandle, SHOW_WINDOW_CMD.SW_HIDE);
             PInvoke.InvalidateRect(_magnifierWindowHandle, (RECT?)null, new BOOL(1));
+            IsVisible = false;
         }
 
         private RECT GetMagnificationAreaRECT()

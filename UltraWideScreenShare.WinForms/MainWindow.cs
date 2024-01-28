@@ -9,9 +9,13 @@ namespace UltraWideScreenShare.WinForms
 {
     public partial class MainWindow : Form
     {
-        private readonly Timer _dispatcherTimer = new Timer() { Interval = 5 };
+        private readonly Timer _dispatcherTimer = new Timer() { Interval = 1 };
         private Magnifier _magnifier;
+        private MagnifierWindow _magnifierWindow;
+
         private bool _isTransparent = false;
+        private bool _nextMagnifierVisibility = false;
+
         private Color _frameColor = Color.FromArgb(255, 53, 89, 224); //#3559E0
         const int _borderWidth = 8;
         public MainWindow()
@@ -24,9 +28,10 @@ namespace UltraWideScreenShare.WinForms
             FormBorderStyle = FormBorderStyle.None;
             DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+            _magnifierWindow = new MagnifierWindow();
         }
 
-      
+
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
@@ -41,12 +46,14 @@ namespace UltraWideScreenShare.WinForms
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            _magnifier = new Magnifier(magnifierPanel.Handle);
+            this.Owner = _magnifierWindow;
+            _magnifierWindow.Show();
+            _magnifier = new Magnifier(_magnifierWindow.Handle);
             _dispatcherTimer.Start();
             _dispatcherTimer.Tick += (s, a) =>
             {
                 _magnifier.UpdateMagnifierWindow();
-                if (magnifierPanel.Bounds.Contains(PointToClient(Cursor.Position)) && !controlPanel.Bounds.Contains(PointToClient(Cursor.Position)))
+                if (_magnifierWindow.Bounds.Contains(PointToClient(Cursor.Position)) && !controlPanel.Bounds.Contains(PointToClient(Cursor.Position)))
                 {
                     if (!_isTransparent)
                     { this.SetTransparency(_isTransparent = true); Trace.WriteLine("enter"); }
@@ -57,12 +64,21 @@ namespace UltraWideScreenShare.WinForms
                     { this.SetTransparency(_isTransparent = false); Trace.WriteLine("leave"); }
                 }
 
+                if(!_magnifier.IsVisible && _nextMagnifierVisibility)
+                    _magnifier.Show();
+
             };
         }
 
-        private void MainWindow_ResizeBegin(object sender, EventArgs e) => _magnifier.HideMagnifier();
+        private void MainWindow_ResizeBegin(object sender, EventArgs e) {
+            _nextMagnifierVisibility = false;
+            _magnifier.Hide();
+        }
 
-        private void MainWindow_ResizeEnd(object sender, EventArgs e) => _magnifier.ShowMagnifier();
+        private void MainWindow_ResizeEnd(object sender, EventArgs e)
+        {
+            _nextMagnifierVisibility = true;
+        }
 
 
         private void TittleBar_MouseDown(object sender, MouseEventArgs e)
@@ -83,7 +99,7 @@ namespace UltraWideScreenShare.WinForms
             var message = m.Msg;
             if (message == WM_NCCALCSIZE)
             {
-                return; 
+                return;
             }
 
             if (message == WM_NCACTIVATE)
@@ -97,7 +113,7 @@ namespace UltraWideScreenShare.WinForms
             if (message == WM_NCHITTEST)
             {
                 this.TryResize(ref m, _borderWidth);
-            }   
+            }
         }
 
         private void MainWindow_Paint(object sender, PaintEventArgs e)
@@ -115,7 +131,7 @@ namespace UltraWideScreenShare.WinForms
 
         private void maximizeButton_Click(object sender, EventArgs e)
         {
-            WindowState = WindowState == FormWindowState.Maximized 
+            WindowState = WindowState == FormWindowState.Maximized
                 ? FormWindowState.Normal : FormWindowState.Maximized;
             SetupMaximizeButton();
         }
@@ -131,5 +147,37 @@ namespace UltraWideScreenShare.WinForms
                 maximizeButton.Image = Properties.Resources.maximize;
             }
         }
+
+        private void MainWindow_LocationChanged(object sender, EventArgs e)
+        {
+            if (_magnifierWindow == null)
+                return;
+
+            var location = Location;
+            location.X += _borderWidth;
+            location.Y += _borderWidth * 5;
+            var size = Size;
+            size.Width -= _borderWidth * 2;
+            size.Height -= _borderWidth * 2;
+            _magnifierWindow.Location = location;
+            _magnifierWindow.Size = size;
+        }
+
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            if (_magnifierWindow == null)
+                return;
+
+            var location = Location;
+            location.X += _borderWidth * 5;
+            location.Y += _borderWidth;
+            var size = Size;
+            size.Width -= _borderWidth * 2;
+            size.Height -= _borderWidth * 2;
+            _magnifierWindow.Location = location;
+            _magnifierWindow.Size = size;
+        }
+
     }
 }
