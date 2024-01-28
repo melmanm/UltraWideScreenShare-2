@@ -181,25 +181,25 @@ namespace UltraWideScreenShare.WinForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Magenta;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.magnifierPanel);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(500, 200);
             this.Name = "MainWindow";
             this.Padding = new System.Windows.Forms.Padding(8);
             this.Text = "Ultra Wide Screen Share 2.0";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.Magenta;
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResizeBegin += new System.EventHandler(this.MainWindow_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.MainWindow_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainWindow_Paint);
-            this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.BackColor = System.Drawing.Color.Magenta;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.DoubleBuffered = true;
             this.controlPanel.ResumeLayout(false);
-            this.MinimumSize = new Size(500, 200);
             this.ResumeLayout(false);
 
         }

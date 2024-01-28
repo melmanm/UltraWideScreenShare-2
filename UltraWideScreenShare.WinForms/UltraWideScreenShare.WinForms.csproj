@@ -9,12 +9,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>UltraWideScreenShare.WinForms.Program</StartupObject>
     <AssemblyName>UltraWideScreenShare2</AssemblyName>
-    <ApplicationIcon>Resources\ultrawidescreenshare2.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icon-uwsh.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Resources\ultrawidescreenshare2.ico" />
+    <Content Include="Resources\icon-uwsh.ico" />
   </ItemGroup>
 
   <ItemGroup>
