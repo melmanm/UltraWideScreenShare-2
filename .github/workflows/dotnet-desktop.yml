@@ -2,8 +2,9 @@ name: .NET Core Desktop
 
 on:
   push:
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
 
@@ -49,22 +50,9 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-     Upload files
+    # Upload files
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: UltraWideScreenShare2
         path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
-        
-    - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-       with:
-         tag_name: ${{ github.ref }}
-         release_name: Release ${{ github.ref }}
-         body: |
-           Initial release
-         draft: false
-         prerelease: true
