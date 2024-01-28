@@ -57,9 +57,9 @@ jobs:
         name: UltraWideScreenShare2
         path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\
 
-      - name: Perform a Pester test from the command-line
-        shell: pwsh
-        - run: Compress-Archive -Path ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\* -Destination release.zip
+    - name: Perform a Pester test from the command-line
+      shell: pwsh
+      - run: Compress-Archive -Path ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\* -Destination release.zip
 
     - name: Release
       uses: softprops/action-gh-release@v1
