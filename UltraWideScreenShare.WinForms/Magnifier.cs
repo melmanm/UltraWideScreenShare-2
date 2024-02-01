@@ -63,7 +63,7 @@ namespace UltraWideScreenShare.WinForms
         private RECT GetMagnificationAreaRECT()
         {
             PInvoke.GetWindowRect(_hostWindowHandle, out RECT windowRect);
-            PInvoke.GetClientRect(_hostWindowHandle, out RECT clientRect);
+            PInvoke.GetClientRect(_magnifierWindowHandle, out RECT clientRect);
 
             var borderThickness = (windowRect.Width - clientRect.Width) / 2;
             var headerThickness = windowRect.Height - clientRect.Height - borderThickness;
