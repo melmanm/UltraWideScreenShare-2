@@ -12,3 +12,8 @@ SetWindowLong
 GetWindowLong
 SendMessage
 ReleaseCapture
+MonitorFromWindow
+EnumDisplaySettings
+GetMonitorInfo
+MONITORINFOEXA
+MagSetWindowTransform

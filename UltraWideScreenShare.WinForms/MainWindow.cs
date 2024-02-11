@@ -63,8 +63,11 @@ namespace UltraWideScreenShare.WinForms
 
         private void MainWindow_ResizeBegin(object sender, EventArgs e) => _magnifier.HideMagnifier();
 
-        private void MainWindow_ResizeEnd(object sender, EventArgs e) => _showMagnifierScheduled = true;
-
+        private void MainWindow_ResizeEnd(object sender, EventArgs e)
+        {
+            _showMagnifierScheduled = true; 
+            _magnifier.CalculateMonitorRatio();
+        }
 
         private void TittleBar_MouseDown(object sender, MouseEventArgs e)
         {
