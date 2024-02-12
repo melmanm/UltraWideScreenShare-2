@@ -1,9 +1,5 @@
-using System.CodeDom;
 using System.ComponentModel;
 using System.Diagnostics;
-using Windows.Win32;
-using Windows.Win32.Foundation;
-using Windows.Win32.UI.WindowsAndMessaging;
 using Timer = System.Windows.Forms.Timer;
 
 namespace UltraWideScreenShare.WinForms
@@ -24,7 +20,6 @@ namespace UltraWideScreenShare.WinForms
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
         }
 
-      
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
