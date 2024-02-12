@@ -1,10 +1,6 @@
 ﻿using Windows.Win32;
 using Windows.Win32.UI.WindowsAndMessaging;
 using Windows.Win32.Foundation;
-using Windows.Win32.Graphics.Gdi;
-using System.Runtime.InteropServices;
-using UltraWideScreenShare.WinForms.Marshalling;
-using Windows.Win32.UI.Magnification;
 
 namespace UltraWideScreenShare.WinForms
 {
@@ -63,28 +59,6 @@ namespace UltraWideScreenShare.WinForms
             PInvoke.InvalidateRect(_magnifierWindowHandle, (RECT?)null, new BOOL(1));
         }
 
-        public unsafe double CalculateMonitorRatio()
-        {
-            var monitor = PInvoke.MonitorFromWindow(_magnifierWindowHandle, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTOPRIMARY);
-            MONITORINFOEX monitorInfoEx = new MONITORINFOEX();
-
-            WinApiMethods.GetMonitorInfo(monitor, monitorInfoEx);
-            var horizontalRatioLogical = (monitorInfoEx.rcMonitor.right - monitorInfoEx.rcMonitor.left);
-            //var verticalRatioLogical = (monitorInfoEx.rcMonitor.bottom - monitorInfoEx.rcMonitor.top);
-
-            DEVMODEW devmodev = new DEVMODEW();
-            if (PInvoke.EnumDisplaySettings(monitorInfoEx.szDeviceNameString(), ENUM_DISPLAY_SETTINGS_MODE.ENUM_CURRENT_SETTINGS, ref devmodev).Value == 1)
-            {
-                var horizontalRatioPhysical = devmodev.dmPelsWidth;
-                var verticalRatioPhysical = devmodev.dmPelsHeight;
-
-                return ((double)horizontalRatioPhysical / (double)horizontalRatioLogical);
-                //_verticalRatio = ((double)verticalRatioPhysical / (double)verticalRatioLogical);
-            }
-
-            return 1;
-        }
-
         unsafe private RECT GetMagnificationAreaRECT()
         {
             PInvoke.GetWindowRect(_hostWindowHandle, out RECT windowRect);
@@ -93,7 +67,5 @@ namespace UltraWideScreenShare.WinForms
             return new RECT(new Point((int)(windowRect.left), (int)(windowRect.top)), 
                 new Size((int)(clientRect.Width), (int)(clientRect.Height)));
         }
-
-
     }
 }
