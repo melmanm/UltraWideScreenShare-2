@@ -1,4 +1,5 @@
 using System.CodeDom;
+using System.ComponentModel;
 using System.Diagnostics;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -63,11 +64,8 @@ namespace UltraWideScreenShare.WinForms
 
         private void MainWindow_ResizeBegin(object sender, EventArgs e) => _magnifier.HideMagnifier();
 
-        private void MainWindow_ResizeEnd(object sender, EventArgs e)
-        {
-            _showMagnifierScheduled = true; 
-            _magnifier.CalculateMonitorRatio();
-        }
+        private void MainWindow_ResizeEnd(object sender, EventArgs e) => _showMagnifierScheduled = true; 
+
 
         private void TittleBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -115,6 +113,12 @@ namespace UltraWideScreenShare.WinForms
 
         private void closeButton_Click(object sender, EventArgs e) => Close();
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _dispatcherTimer.Stop();
+            _dispatcherTimer.Dispose();
+            base.OnClosing(e);
+        }
         private void minimizeButton_Click(object sender, EventArgs e) => WindowState = FormWindowState.Minimized;
 
         private void maximizeButton_Click(object sender, EventArgs e)

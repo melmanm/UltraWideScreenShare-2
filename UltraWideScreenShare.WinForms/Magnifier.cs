@@ -46,8 +46,8 @@ namespace UltraWideScreenShare.WinForms
             var magnificationArea = GetMagnificationAreaRECT();
             PInvoke.SetWindowPos(_magnifierWindowHandle, HWND.Null, 0, 0, magnificationArea.Width, magnificationArea.Height, 0);
             PInvoke.MagSetWindowSource(_magnifierWindowHandle, magnificationArea);
-            var transformation = new TRANSFORMATION(1);
-            WinApiMethods.MagSetWindowTransform(_magnifierWindowHandle, ref transformation);
+            //var transformation = new TRANSFORMATION(1);
+            //WinApiMethods.MagSetWindowTransform(_magnifierWindowHandle, ref transformation);
             PInvoke.InvalidateRect(_magnifierWindowHandle, (RECT?)null, new BOOL(1));
         }
 
