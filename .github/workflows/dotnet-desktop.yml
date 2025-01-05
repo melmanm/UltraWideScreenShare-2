@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Release]
-	rid: [win-x86, win-x64]
+        rid: [win-x86, win-x64]
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
@@ -43,6 +43,7 @@ jobs:
     # Build app
     - name: Build the application
       run: dotnet publish $env:Project_Path -c $env:Configuration -p:PublishReadyToRun=true -p:PublishSingleFile=true --self-contained true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false -r
+      env:  
         Configuration: ${{ matrix.configuration }}
 
     # Upload files
@@ -51,7 +52,7 @@ jobs:
       with:
         name: UltraWideScreenShare2-${{ matrix.rid }}
         path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\net6.0-windows\${{ matrix.rid }}\publish\
-	compression-level: 1
+        compression-level: 1
    
     - name: Release
       uses: softprops/action-gh-release@v1
