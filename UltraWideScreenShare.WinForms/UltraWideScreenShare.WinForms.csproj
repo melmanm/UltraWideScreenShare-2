@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
 	<RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
 	<Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -12,7 +12,6 @@
     <ApplicationIcon>Resources\icon-uwsh.ico</ApplicationIcon>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	<PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -42,7 +42,7 @@ jobs:
 
     # Build app
     - name: Build the application
-      run: dotnet publish $env:Project_Path -c $env:Configuration --sc
+      run: dotnet publish $env:Project_Path -c $env:Configuration -p:PublishReadyToRun=true -p:PublishSingleFile=true --self-contained true -p:IncludeNativeLibrariesForSelfExtract=true
       env:
         Configuration: ${{ matrix.configuration }}
 
