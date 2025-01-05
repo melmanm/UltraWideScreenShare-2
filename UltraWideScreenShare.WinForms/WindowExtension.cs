@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata;
+using UltraWideScreenShare.WinForms.Properties;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -75,6 +76,34 @@ namespace UltraWideScreenShare.WinForms
             else if (Bottom(borderWidth, window).Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
         }
 
-        
+        public static void RestoreWindowPosition(this Form window)
+        {
+            if (Settings.Default.WindowsSettingsSaved)
+            {
+                window.WindowState = (FormWindowState)Settings.Default.WindowState;
+                window.Location = Settings.Default.Location;
+                window.Size = Settings.Default.Size;
+            }
+        }
+
+        public static void SaveWindowPosition(this Form window)
+        {
+            Settings.Default.WindowState = (uint)window.WindowState;
+
+            if (window.WindowState == FormWindowState.Normal)
+            {
+                Settings.Default.Location = window.Location;
+                Settings.Default.Size = window.Size;
+            }
+            else
+            {
+                Settings.Default.Location = window.RestoreBounds.Location;
+                Settings.Default.Size = window.RestoreBounds.Size;
+            }
+
+            Settings.Default.WindowsSettingsSaved = true;
+
+            Settings.Default.Save();
+        }
     }
 }
