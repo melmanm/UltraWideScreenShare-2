@@ -23,7 +23,6 @@ namespace UltraWideScreenShare.WinForms
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-
             this.InitializeMainWindowStyle();
         }
 
@@ -34,6 +33,8 @@ namespace UltraWideScreenShare.WinForms
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            this.RestoreWindowPosition();
+
             _magnifier = new Magnifier(magnifierPanel.Handle);
             _dispatcherTimer.Start();
             _dispatcherTimer.Tick += (s, a) =>
@@ -133,6 +134,11 @@ namespace UltraWideScreenShare.WinForms
             {
                 maximizeButton.Image = Properties.Resources.maximize;
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            this.SaveWindowPosition();
         }
     }
 }
