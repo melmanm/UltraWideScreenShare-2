@@ -53,7 +53,7 @@ jobs:
       with:
         name: UltraWideScreenShare2-${{ matrix.rid }}
         path: ${{ env.Project_Dir }}\bin\${{ matrix.configuration }}\${{ matrix.rid }}\publish\
-	      compression-level: 1
+        compression-level: 1
    
     - name: Release
       uses: softprops/action-gh-release@v1
