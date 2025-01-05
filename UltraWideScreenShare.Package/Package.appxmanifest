@@ -7,12 +7,12 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="03692554-3163-4f67-9571-8f6ac1e34a81"
-    Publisher="CN=Michal"
-    Version="1.0.2.0" />
+    Name="49836MichalSilski.UltraWideScreenShare2.0"
+    Publisher="CN=5700CC75-07A0-42EB-AD16-6244A1B9A64F"
+    Version="1.0.14.0" />
 
   <Properties>
-    <DisplayName>UltraWideScreenShare2</DisplayName>
+    <DisplayName>Ultra Wide Screen Share 2.0</DisplayName>
     <PublisherDisplayName>Michal Silski</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -31,7 +31,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="UltraWideScreenShare2"
+        DisplayName="Ultra Wide Screen Share 2.0"
         Description="UltraWideScreenShare2"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"

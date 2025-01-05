@@ -10,7 +10,7 @@
     <StartupObject>UltraWideScreenShare.WinForms.Program</StartupObject>
     <AssemblyName>UltraWideScreenShare2</AssemblyName>
     <ApplicationIcon>Resources\icon-uwsh.ico</ApplicationIcon>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>AnyCPU;x86;x64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
