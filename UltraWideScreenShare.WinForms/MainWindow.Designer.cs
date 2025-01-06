@@ -32,193 +32,190 @@ namespace UltraWideScreenShare.WinForms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.magnifierPanel = new System.Windows.Forms.Panel();
-            this.controlPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.shareButton = new System.Windows.Forms.Button();
-            this.tittleButton = new System.Windows.Forms.Button();
-            this.dragButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
-            this.maximizeButton = new System.Windows.Forms.Button();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.controlPanel.SuspendLayout();
-            this.SuspendLayout();
+            magnifierPanel = new Panel();
+            TitleBar = new FlowLayoutPanel();
+            shareButton = new Button();
+            titleButton = new Button();
+            dragButton = new Button();
+            minimizeButton = new Button();
+            maximizeButton = new Button();
+            closeButton = new Button();
+            TitleBar.SuspendLayout();
+            SuspendLayout();
             // 
             // magnifierPanel
             // 
-            this.magnifierPanel.BackColor = System.Drawing.Color.Transparent;
-            this.magnifierPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.magnifierPanel.Location = new System.Drawing.Point(9, 11);
-            this.magnifierPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.magnifierPanel.Name = "magnifierPanel";
-            this.magnifierPanel.Padding = new System.Windows.Forms.Padding(9, 11, 9, 11);
-            this.magnifierPanel.Size = new System.Drawing.Size(896, 578);
-            this.magnifierPanel.TabIndex = 0;
+            magnifierPanel.BackColor = Color.Transparent;
+            magnifierPanel.Dock = DockStyle.Fill;
+            magnifierPanel.Location = new Point(8, 8);
+            magnifierPanel.Margin = new Padding(0);
+            magnifierPanel.Name = "magnifierPanel";
+            magnifierPanel.Size = new Size(1469, 944);
+            magnifierPanel.TabIndex = 0;
             // 
-            // controlPanel
+            // TitleBar
             // 
-            this.controlPanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.controlPanel.BackColor = System.Drawing.Color.White;
-            this.controlPanel.Controls.Add(this.shareButton);
-            this.controlPanel.Controls.Add(this.tittleButton);
-            this.controlPanel.Controls.Add(this.dragButton);
-            this.controlPanel.Controls.Add(this.minimizeButton);
-            this.controlPanel.Controls.Add(this.maximizeButton);
-            this.controlPanel.Controls.Add(this.closeButton);
-            this.controlPanel.Location = new System.Drawing.Point(206, 0);
-            this.controlPanel.Size = new System.Drawing.Size(500, 50);
-            this.controlPanel.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
-            this.controlPanel.Name = "controlPanel";
-            this.controlPanel.AutoScroll = false;
-            this.controlPanel.FlowDirection = FlowDirection.LeftToRight;
-            this.controlPanel.WrapContents = false;
-            this.controlPanel.TabIndex = 1;
+            TitleBar.BackColor = Color.White;
+            TitleBar.Controls.Add(shareButton);
+            TitleBar.Controls.Add(titleButton);
+            TitleBar.Controls.Add(dragButton);
+            TitleBar.Controls.Add(minimizeButton);
+            TitleBar.Controls.Add(maximizeButton);
+            TitleBar.Controls.Add(closeButton);
+            TitleBar.Location = new Point(335, 0);
+            TitleBar.Margin = new Padding(0);
+            TitleBar.Name = "TitleBar";
+            TitleBar.Size = new Size(779, 64);
+            TitleBar.TabIndex = 1;
+            TitleBar.WrapContents = false;
+            TitleBar.Paint += TitleBar_Paint;
             // 
             // shareButton
             // 
-            this.shareButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.shareButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.shareButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.shareButton.FlatAppearance.BorderSize = 0;
-            this.shareButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.shareButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.shareButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.shareButton.Image = global::UltraWideScreenShare.WinForms.Properties.Resources.share;
-            this.shareButton.Location = new System.Drawing.Point(10, 0);
-            this.shareButton.Margin = new System.Windows.Forms.Padding(0);
-            this.shareButton.Name = "shareButton";
-            this.shareButton.Size = new System.Drawing.Size(50, 40);
-            this.shareButton.TabIndex = 5;
-            this.shareButton.UseVisualStyleBackColor = false;
-            this.shareButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TittleBar_MouseDown);
+            shareButton.BackColor = Color.FromArgb(229, 229, 229);
+            shareButton.BackgroundImageLayout = ImageLayout.None;
+            shareButton.FlatAppearance.BorderColor = Color.FromArgb(229, 229, 229);
+            shareButton.FlatAppearance.BorderSize = 0;
+            shareButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 229, 229);
+            shareButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            shareButton.FlatStyle = FlatStyle.Flat;
+            shareButton.Image = Properties.Resources.share;
+            shareButton.Location = new Point(0, 0);
+            shareButton.Margin = new Padding(0);
+            shareButton.Name = "shareButton";
+            shareButton.Size = new Size(81, 64);
+            shareButton.TabIndex = 5;
+            shareButton.UseVisualStyleBackColor = false;
+            shareButton.MouseDown += TittleButton_MouseDown;
             // 
-            // tittleButton
+            // titleButton
             // 
-            this.tittleButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.tittleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tittleButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.tittleButton.FlatAppearance.BorderSize = 0;
-            this.tittleButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.tittleButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.tittleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tittleButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tittleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tittleButton.Location = new System.Drawing.Point(60, 0);
-            this.tittleButton.Margin = new System.Windows.Forms.Padding(0);
-            this.tittleButton.Name = "tittleButton";
-            this.tittleButton.Size = new System.Drawing.Size(230, 40);
-            this.tittleButton.TabIndex = 4;
-            this.tittleButton.Text = "Ultra Wide Screen Share 2.0";
-            this.tittleButton.UseVisualStyleBackColor = false;
-            this.tittleButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TittleBar_MouseDown);
+            titleButton.BackColor = Color.FromArgb(229, 229, 229);
+            titleButton.BackgroundImageLayout = ImageLayout.None;
+            titleButton.FlatAppearance.BorderColor = Color.FromArgb(229, 229, 229);
+            titleButton.FlatAppearance.BorderSize = 0;
+            titleButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 229, 229);
+            titleButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            titleButton.FlatStyle = FlatStyle.Flat;
+            titleButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            titleButton.ImageAlign = ContentAlignment.MiddleRight;
+            titleButton.Location = new Point(81, 0);
+            titleButton.Margin = new Padding(0);
+            titleButton.Name = "titleButton";
+            titleButton.Size = new Size(374, 64);
+            titleButton.TabIndex = 4;
+            titleButton.Text = "Ultra Wide Screen Share 2.0";
+            titleButton.UseVisualStyleBackColor = false;
+            titleButton.MouseDown += TittleButton_MouseDown;
             // 
             // dragButton
             // 
-            this.dragButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.dragButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.dragButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.dragButton.FlatAppearance.BorderSize = 0;
-            this.dragButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.dragButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.dragButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dragButton.Image = global::UltraWideScreenShare.WinForms.Properties.Resources.drag;
-            this.dragButton.Location = new System.Drawing.Point(290, 0);
-            this.dragButton.Margin = new System.Windows.Forms.Padding(0);
-            this.dragButton.Name = "dragButton";
-            this.dragButton.Size = new System.Drawing.Size(50, 40);
-            this.dragButton.TabIndex = 3;
-            this.dragButton.UseVisualStyleBackColor = false;
-            this.dragButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TittleBar_MouseDown);
+            dragButton.BackColor = Color.FromArgb(229, 229, 229);
+            dragButton.BackgroundImageLayout = ImageLayout.None;
+            dragButton.FlatAppearance.BorderColor = Color.FromArgb(229, 229, 229);
+            dragButton.FlatAppearance.BorderSize = 0;
+            dragButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 229, 229);
+            dragButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            dragButton.FlatStyle = FlatStyle.Flat;
+            dragButton.Image = Properties.Resources.drag;
+            dragButton.Location = new Point(455, 0);
+            dragButton.Margin = new Padding(0);
+            dragButton.Name = "dragButton";
+            dragButton.Size = new Size(81, 64);
+            dragButton.TabIndex = 3;
+            dragButton.UseVisualStyleBackColor = false;
+            dragButton.MouseDown += DragButton_MouseDown;
+            dragButton.MouseMove += DragButton_MouseMove;
             // 
             // minimizeButton
             // 
-            this.minimizeButton.BackColor = System.Drawing.Color.White;
-            this.minimizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.minimizeButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.minimizeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.Image = global::UltraWideScreenShare.WinForms.Properties.Resources.minimize;
-            this.minimizeButton.Location = new System.Drawing.Point(340, 0);
-            this.minimizeButton.Margin = new System.Windows.Forms.Padding(0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(50, 40);
-            this.minimizeButton.TabIndex = 2;
-            this.minimizeButton.UseVisualStyleBackColor = false;
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
+            minimizeButton.BackColor = Color.White;
+            minimizeButton.BackgroundImageLayout = ImageLayout.None;
+            minimizeButton.FlatAppearance.BorderColor = Color.White;
+            minimizeButton.FlatAppearance.BorderSize = 0;
+            minimizeButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 229, 229);
+            minimizeButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            minimizeButton.FlatStyle = FlatStyle.Flat;
+            minimizeButton.Image = Properties.Resources.minimize;
+            minimizeButton.Location = new Point(536, 0);
+            minimizeButton.Margin = new Padding(0);
+            minimizeButton.Name = "minimizeButton";
+            minimizeButton.Size = new Size(81, 64);
+            minimizeButton.TabIndex = 2;
+            minimizeButton.UseVisualStyleBackColor = false;
+            minimizeButton.Click += minimizeButton_Click;
             // 
             // maximizeButton
             // 
-            this.maximizeButton.BackColor = System.Drawing.Color.White;
-            this.maximizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.maximizeButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.maximizeButton.FlatAppearance.BorderSize = 0;
-            this.maximizeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.maximizeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.maximizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.maximizeButton.Image = global::UltraWideScreenShare.WinForms.Properties.Resources.maximize;
-            this.maximizeButton.Location = new System.Drawing.Point(390, 0);
-            this.maximizeButton.Margin = new System.Windows.Forms.Padding(0);
-            this.maximizeButton.Name = "maximizeButton";
-            this.maximizeButton.Size = new System.Drawing.Size(50, 40);
-            this.maximizeButton.TabIndex = 1;
-            this.maximizeButton.UseVisualStyleBackColor = false;
-            this.maximizeButton.Click += new System.EventHandler(this.maximizeButton_Click);
+            maximizeButton.BackColor = Color.White;
+            maximizeButton.BackgroundImageLayout = ImageLayout.None;
+            maximizeButton.FlatAppearance.BorderColor = Color.White;
+            maximizeButton.FlatAppearance.BorderSize = 0;
+            maximizeButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 229, 229);
+            maximizeButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            maximizeButton.FlatStyle = FlatStyle.Flat;
+            maximizeButton.Image = Properties.Resources.maximize;
+            maximizeButton.Location = new Point(617, 0);
+            maximizeButton.Margin = new Padding(0);
+            maximizeButton.Name = "maximizeButton";
+            maximizeButton.Size = new Size(81, 64);
+            maximizeButton.TabIndex = 1;
+            maximizeButton.UseVisualStyleBackColor = false;
+            maximizeButton.Click += maximizeButton_Click;
             // 
             // closeButton
             // 
-            this.closeButton.BackColor = System.Drawing.Color.White;
-            this.closeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.closeButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.closeButton.FlatAppearance.BorderSize = 0;
-            this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
-            this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Image = global::UltraWideScreenShare.WinForms.Properties.Resources.dismiss;
-            this.closeButton.Location = new System.Drawing.Point(440, 0);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(0);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(50, 40);
-            this.closeButton.TabIndex = 0;
-            this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            closeButton.BackColor = Color.White;
+            closeButton.BackgroundImageLayout = ImageLayout.None;
+            closeButton.FlatAppearance.BorderColor = Color.White;
+            closeButton.FlatAppearance.BorderSize = 0;
+            closeButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(232, 17, 35);
+            closeButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 17, 35);
+            closeButton.FlatStyle = FlatStyle.Flat;
+            closeButton.Image = Properties.Resources.dismiss;
+            closeButton.Location = new Point(698, 0);
+            closeButton.Margin = new Padding(0);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(81, 64);
+            closeButton.TabIndex = 0;
+            closeButton.UseVisualStyleBackColor = false;
+            closeButton.Click += closeButton_Click;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Magenta;
-            this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.ClientSize = new System.Drawing.Size(914, 600);
-            this.ControlBox = false;
-            this.Controls.Add(this.controlPanel);
-            this.Controls.Add(this.magnifierPanel);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(571, 267);
-            this.Name = "MainWindow";
-            this.Padding = new System.Windows.Forms.Padding(9, 11, 9, 11);
-            this.Text = "Ultra Wide Screen Share 2.0";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.MainWindow_Load);
-            this.ResizeBegin += new System.EventHandler(this.MainWindow_ResizeBegin);
-            this.ResizeEnd += new System.EventHandler(this.MainWindow_ResizeEnd);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainWindow_Paint);
-            this.controlPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Magenta;
+            ClientSize = new Size(1485, 960);
+            ControlBox = false;
+            Controls.Add(TitleBar);
+            Controls.Add(magnifierPanel);
+            DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(5, 6, 5, 6);
+            MinimumSize = new Size(928, 427);
+            Name = "MainWindow";
+            Padding = new Padding(8);
+            Text = "Ultra Wide Screen Share 2.0";
+            TopMost = true;
+            TransparencyKey = Color.Magenta;
+            Load += MainWindow_Load;
+            ResizeBegin += MainWindow_ResizeBegin;
+            ResizeEnd += MainWindow_ResizeEnd;
+            Paint += MainWindow_Paint;
+            TitleBar.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
 
         private Panel magnifierPanel;
-        private FlowLayoutPanel controlPanel;
+        private FlowLayoutPanel TitleBar;
         private Button closeButton;
         private Button maximizeButton;
         private Button minimizeButton;
-        private Button tittleButton;
+        private Button titleButton;
         private Button dragButton;
         private Button shareButton;
     }
